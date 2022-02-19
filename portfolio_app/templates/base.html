@@ -1,135 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ER || {% block title %} {% endblock %}</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ER || {% block title %} {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+    <script
+      src="https://kit.fontawesome.com/e1980685f2.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-  <script src="https://kit.fontawesome.com/e1980685f2.js" crossorigin="anonymous"></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ url_for( 'static', filename='images/favicon-32x32.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for( 'static', filename='images/favicon-16x16.png') }}"
+    />
+  </head>
 
-
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for( 'static', filename='images/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for( 'static', filename='images/favicon-16x16.png') }}">
-</head>
-
-<body>
-  <!-- navbar -->
-  <nav class="nav navbar-fixed" id="nav">
-    <div class="nav-center">
-      <!-- nav header -->
-      <div class="nav-header">
-        <a href="/">
-          <img src="{{ url_for( 'static', filename='images/logo.svg') }}" class="nav-logo" alt="nav logo">
-        </a>
-        <button class="nav-btn" id="nav-btn">
-          <i class="fas fa-bars"></i>
-        </button>
+  <body>
+    <!-- navbar -->
+    <nav class="nav navbar-fixed" id="nav">
+      <div class="nav-center">
+        <!-- nav header -->
+        <div class="nav-header">
+          <a href="/">
+            <img
+              src="{{ url_for( 'static', filename='images/logo.svg') }}"
+              class="nav-logo"
+              alt="nav logo"
+            />
+          </a>
+          <button class="nav-btn" id="nav-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <!-- nav links -->
+        <ul class="nav-links">
+          <li>
+            <a href="{{ url_for('main.home_view')}}">home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('main.about_view')}}">about</a>
+          </li>
+          <li>
+            <a href="{{ url_for('main.projects_view')}}">projects</a>
+          </li>
+          <li>
+            <a href="{{ url_for('blog.bloglist_view') }}">blog</a>
+          </li>
+        </ul>
       </div>
-      <!-- nav links -->
-      <ul class="nav-links">
-        <li>
-          <a href="{{ url_for('main.home_view')}}">home</a>
-        </li>
-        <li>
-          <a href="{{ url_for('main.about_view')}}">about</a>
-        </li>
-        <li>
-          <a href="{{ url_for('main.projects_view')}}">projects</a>
-        </li>
-        <li>
-          <a href="{{ url_for('blog.bloglist_view') }}">blog</a>
-        </li>
-      </ul>
+    </nav>
+
+    <!-- end of navbar -->
+    <!-- sidebar -->
+
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <button class="close-btn" id="close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+        <!-- nav links -->
+        <ul class="sidebar-links">
+          <li>
+            <a href="{{ url_for('main.home_view') }}">home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('main.about_view') }}">about</a>
+          </li>
+          <li>
+            <a href="{{ url_for('main.projects_view') }}">projects</a>
+          </li>
+          <li>
+            <a href="{{ url_for('blog.bloglist_view') }}">blog</a>
+          </li>
+        </ul>
+        <!-- social icons -->
+        <ul class="social-icons">
+          <li>
+            <a
+              href="https://github.com/erwinru/"
+              target="_blank"
+              class="social-icon"
+              ><i class="fab fa-github"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/erwin.rudi.3"
+              target="_blank"
+              class="social-icon"
+              ><i class="fab fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/erudi"
+              target="_blank"
+              class="social-icon"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" target="_blank" class="social-icon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- end of sidebar -->
+
+    <!-- ********************** flashed massage ********************** -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert-{{ category }} flash">
+      {{ message }}
     </div>
-  </nav>
+    {% endfor %} {% endif %} {% endwith %}
+    <!-- ******************** end of flashed massage ******************** -->
 
-  <!-- end of navbar -->
-  <!-- sidebar -->
+    <!-- ********************** content ********************** -->
+    {% block content %} {% endblock %}
+    <!-- ******************** end of content ******************** -->
 
-  <aside class="sidebar" id="sidebar">
-    <div>
-      <button class="close-btn" id="close-btn">
-        <i class="fas fa-times"></i>
-      </button>
-      <!-- nav links -->
-      <ul class="sidebar-links">
-        <li>
-          <a href="{{ url_for('main.home_view') }}">home</a>
-        </li>
-        <li>
-          <a href="{{ url_for('main.about_view') }}">about</a>
-        </li>
-        <li>
-          <a href="{{ url_for('main.projects_view') }}">projects</a>
-        </li>
-        <li>
-          <a href="{{ url_for('blog.bloglist_view') }}">blog</a>
-        </li>
-      </ul>
+    <!-- footer -->
+    <footer class="footer">
       <!-- social icons -->
       <ul class="social-icons">
         <li>
-          <a href="https://github.com/solinuck/" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+          <a
+            href="https://github.com/erwinru/"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-github"></i
+          ></a>
         </li>
         <li>
-          <a href="https://www.facebook.com/erwin.rudi.3" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a
+            href="https://www.facebook.com/erwin.rudi.3"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-facebook"></i
+          ></a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/erwin-rudi-0a694b197/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          <a
+            href="https://www.linkedin.com/in/erudi/"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-linkedin"></i
+          ></a>
         </li>
         <li>
-          <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" class="social-icon" class="social-icon"
+            ><i class="fab fa-instagram"></i
+          ></a>
         </li>
       </ul>
-    </div>
-  </aside>
-  <!-- end of sidebar -->
+      <p>&copy; <span id="date"></span> erwin rudi. all rights reserved</p>
+    </footer>
 
-  <!-- ********************** flashed massage ********************** -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <div class="alert-{{ category }} flash">
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-  <!-- ******************** end of flashed massage ******************** -->
-
-  <!-- ********************** content ********************** -->
-  {% block content %}
-
-  {% endblock %}
-  <!-- ******************** end of content ******************** -->
-
-
-  <!-- footer -->
-  <footer class="footer">
-    <!-- social icons -->
-    <ul class="social-icons">
-      <li>
-        <a href="https://github.com/solinuck/" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-      </li>
-      <li>
-        <a href="https://www.facebook.com/erwin.rudi.3" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/erwin-rudi-0a694b197/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
-      </li>
-      <li>
-        <a href="#" target="_blank" class="social-icon" class="social-icon"><i class="fab fa-instagram"></i></a>
-      </li>
-    </ul>
-    <p>&copy; <span id="date"></span> erwin rudi. all rights reserved</p>
-  </footer>
-
-
-  <script type="text/javascript" src="{{ url_for('static', filename='js/app.js')}}">
-  </script>
-</body>
-
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/app.js')}}"
+    ></script>
+  </body>
 </html>
