@@ -1,5 +1,6 @@
 # Portfolio Web page with Blog functionality
 This was a learning project to get more experience in web development.
+It was inpired by a the HTML/CSS course of John Smilga and a flask tutorial by Corey Schafer. 
 You can visit the page [here](https://portfolio-project-er.herokuapp.com/)
 
 Please note that the information of the CV and my skills on the About page is outdated.
