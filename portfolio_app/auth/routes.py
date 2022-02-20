@@ -14,29 +14,29 @@ from portfolio_app.models import User
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-# @auth.route("/register", methods=["GET", "POST"])
-# def register_view():
-#     if current_user.is_authenticated:
-#         return redirect(url_for("main.home_view"))
-#     form = RegistrationForm()
-#     if form.validate_on_submit():
-#         hashed_password = bcrypt.generate_password_hash(
-#             form.password.data
-#         ).decode("utf-8")
-#         user = User(
-#             username=form.username.data,
-#             email=form.email.data,
-#             password=hashed_password,
-#         )
-#         db.session.add(user)
-#         db.session.commit()
-#         flash(
-#             "Your account has been created! You are now able to log in.",
-#             "success",
-#         )
-#         return redirect(url_for("auth.login_view"))
-#
-#     return render_template("auth/register.html", form=form)
+@auth.route("/register", methods=["GET", "POST"])
+def register_view():
+    if current_user.is_authenticated:
+        return redirect(url_for("main.home_view"))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data
+        ).decode("utf-8")
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            password=hashed_password,
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash(
+            "Your account has been created! You are now able to log in.",
+            "success",
+        )
+        return redirect(url_for("auth.login_view"))
+
+    return render_template("auth/register.html", form=form)
 
 
 @auth.route("/login", methods=["GET", "POST"])
