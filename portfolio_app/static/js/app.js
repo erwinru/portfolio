@@ -168,7 +168,7 @@ async function ajaxUser() {
   const repoNames = [
     "path-finding",
     "chess-engine",
-    "computational-physics",
+    "physics-simulations",
     "portfolio"
   ];
 
