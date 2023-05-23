@@ -31,7 +31,7 @@ pycparser==2.21
 PyGithub==1.55
 Pygments==2.11.2
 PyJWT==2.4.0
-requests==2.27.1
+requests==2.31.0
 six==1.16.0
 SQLAlchemy==1.4.31
 traitlets==5.1.1
